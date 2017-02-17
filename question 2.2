@@ -1,0 +1,39 @@
+      The Hadoop Distributed File System is a distributed file system designed to run on a commodity hardware.  
+ Hadoop has many similarities with the existing file systems with few significant differences. It is highly fault-tolerant and is
+ highly designed to be deployed on relatively inexpensive hardwares. 
+ 
+ Features of HDFS:
+      Hardware Failures:
+          Hardware failure is the norm rather than exception in distributed file systems. An HDfs
+          instance may have or consist of hundreds or thousands of server machines, each storiing a part
+          of the file system's data. The fact is that there are a huge number of components and that 
+          each components and that each component has a significant probability of failure which 
+          means that some component of HDFS is always non-functional.  Thus the architectural goal of HDFS
+          is to detect faults quickly and recover automatically .
+      
+      Streaming Data Acess:
+          Applications that run on HDFS need streaming access to their sets. They are not general prupose applications 
+          that run on general purpose distributed file systems. It is designed more for batch processing
+          rather than interactive use by users. The major aspect is the high data access rather that
+          inability to access data.
+          
+      
+      Large Data sets:
+          Applications that run on HDFS have large data sets (a collection of related sets of information that is composed of 
+          seperate elements but can by manipulated as a single unit by a computer. A typical HDFS file is GB(giga-bytes) 
+          and TB(tera-bytes) in size. The HDFS must be able support large volumes of data in a single instance.
+         
+      Moving Computation is cheaper than Moving data:
+          When the size of the data set is huge , the requst of a computation by an application is much more efficient if it is 
+          executed near the data it operates on. This minimizes the network congestion an increases the overall processing of the 
+          system. 
+          
+      Portability:
+          HDFS is designed in such a way that it is easily portable from one platform to another.
+          This helps in the wide-spread adoption of HDFS as a platform of choice for large sets of 
+          applications. 
+       
+     
+          
+      
+      
