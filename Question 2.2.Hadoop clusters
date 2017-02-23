@@ -12,5 +12,35 @@ Elements of the HDFS cluster:
       Slave Nodes:  The slave nodes constitute the major portion of the virtual machine and perform operations like storing data and computations.
                     Each slave node works on the basis of instructions that are received from the master node in regular intervals. There is regular 
                     communication from the master node. 
+                    
       Client Nodes: Client nodes are neither master or slave nodes. It sends the data into the cluster and describes how the job has to be done.
                     and then finally retrieves the results of the job processed when it is complete.
+                    
+                    
+WORKING OF HDFS CLUSTER:
+     A typical HDFS cluster works basically on 4 steps:
+              1)     Loading data into the cluster.
+              2)     Analyzing the data being loaded.
+              3)     Storing the data in the cluster
+              4)     Reads the results from the cluster.
+              
+              The flow of the process is simple to understand with the help of an example. Let us assume our client who is from a bank and has
+given a problem and asks us to find the number of customers who have withdrawn money less than 2000 Rupees. Since it is a bank, there are
+many custoners and there is a huge data involved. So he asks us to get what he needs. He gives a big file with all the transaction details.
+These data stored in file are loaded into the cluster. The idea of the system is break and process the huge chunk of files parallely.
+The data is wide spread in multiple machines so that multiple instances ca be run at the same time. So the client will brea the data into 
+small Blocks and place these asmaller blocks into multiple machines. More the blocks broken, there are more machines that will be able to work 
+on this data in parallel. The machines are prone to failure also. So we must ensure that every block is on multiple machines simultaneously to avoid 
+data losss. SO each block is replicated in the cluster as its loaded. This is where the replication factor plays its role. The client breaks the file into blocks.
+TFor each bloack, the client consults the Name Node and receives a list of Data Nodes that should have a copy of this block. The client then writes the
+block directly to the Data Node. The receiving Data node replicates the block to other Data NOdes, and the cycle repeats for the remaining blocks.
+The name node is not in the data path. The Name node only provides the map of where data is and where data should go in the cluster.
+
+Rack awareness: (Conceptual understanding):
+              There is a concept in Hadoop called as Rack awareness which as an administrator we need to know. We can manually define the rack number
+of each slave Data Node in your cluster. We need to do this for two major reasons: Data loss prevention and Network performance. Assume we laod data into the cluster 
+for processing. We have three copies of file that is being done by the system to prevent the failure of one machine from losing all copies of data.
+It would sound awkward to lose all the valuable information. To avoid this the Name node will now where Data Nodes are located in the network technology and use that info
+t make an intelligent decision about where data replicas should exist in the cluster.
+
+
