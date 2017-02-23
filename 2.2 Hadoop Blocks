@@ -1,0 +1,27 @@
+Hadoop Blocks:  
+      When we store a collosal file in the HDFS, the system breaks the file into a set of individual blocks 
+and stores these blocks in slave nodes in the cluster. 
+
+      This can be explained with a simple example.(Diagram attached)
+          Let us consider a file Kingfruit.txt from a fruit market monpoly with a file size of 257MB. HDFS does not care what
+is stored inside the file. So raw files are not split as per rules that help users understand. Hdfs makes sure that the files are split into 
+evenly sized blocks of block size 128 MB.
+
+          This file is broken down into smaller blocks with a block memory of 128MB as memory. So there are 2 blocks used to store 256 MB memory
+of data. The system is left with 1MB of data in the given file. This is where another blck is formed. This is how blocks function in HDFS. The file 
+of any given size is formed as a block when it exceeds the default size of the block.
+
+      Hadoop is designed to store data at a peta-byte scale. The high block size is a direct reult of this 
+need to store data on a massive scale.
+      
+      Every data block stored in HDFS has its own Metadata. It needs to be tracked by a central server so that the apps
+      needing to access a specific file can be directed to wherever the file blocks are stored. This is where the "rack awareness"     
+      concept plays the key role. 
+
+     Moreover the HDFS is designed to perform parallel functioning of what has to be processed. The definition of parallelism can 
+     be explaui=ined with Hadoop's scalability. Hadoop's parallelism can be defined as the ability to process the individual blocks of these 
+     large files in parallel(simultaneously).
+     
+        To enable efficient processing, there needs to be a proper balance. The block size needs to be large enough to 
+        make use of the resources provided to an individual unit of data processing. At the same time the block size can't be so large that
+        it keeps the system waiting for longer time for even the last unit of data to finish processing.
